@@ -2,15 +2,11 @@
 
 	include_once 'Session.php';
 	include 'Database.php';
-class User
-{
+class User{
 	private $db;
-	public function __construct()
-	{
-		$this->db = new Database();
-
+	public function __construct(){
+	     $this->db = new Database();
 	}
-
 
 	public function userRegistration($data){
 
@@ -24,24 +20,22 @@ class User
 
 		if ($name == "" OR $username == "" OR $email == "" OR $password == "") {
                
-               $msg = "<div class='alert alert-danger'><strong>Error ! </strong>Field must not be empty.</div>";
+                   $msg = "<div class='alert alert-danger'><strong>Error ! </strong>Field must not be empty.</div>";
 
-              return $msg;
+                   return $msg;
 		}
 
 		if (strlen($username) < 3) {
-			 $msg = "<div class='alert alert-danger'><strong>Error ! </strong>Username is too short !</div>";
-
-              return $msg;
+	          $msg = "<div class='alert alert-danger'><strong>Error ! </strong>Username is too short !</div>";
+                  return $msg;
 		}elseif (preg_match('/[^a-z0-9_-]+/i', $username)){
 			 $msg = "<div class='alert alert-danger'><strong>Error ! </strong>Username must only contain alphanumarical, dashes and underscores! !</div>";
 		}
 
         if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
         
-        $msg = "<div class='alert alert-danger'><strong>Error ! </strong>Email address is not valid !</div>";
-
-              return $msg;
+              $msg = "<div class='alert alert-danger'><strong>Error ! </strong>Email address is not valid !</div>";
+	      return $msg;
 
         }
 
@@ -82,8 +76,7 @@ class User
 		}else{
 			return false;
 		}
-
-	}
+	    }
 
 
 	public function getLoginUser($email, $password){
@@ -95,8 +88,7 @@ class User
 		$query->execute();
 		$result = $query->fetch(PDO::FETCH_OBJ);
 		return $result;
-
-	}
+	       }
 
 
 	public function userLogin($data){
@@ -267,9 +259,7 @@ class User
               return $msg;
 
         }
-
-     }
-
+    }
 }
 
 ?>
